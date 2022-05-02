@@ -9,9 +9,7 @@ module.exports.renderSummary = async (req, res, next) => {
   const bills = await Bill.find({})
 
   const { dateDue } = req.body
-
-  console.log(dateDue)
-  
+ 
   let budget = reduceBills(bills)
 
   let today = new Date().getDate()
