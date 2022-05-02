@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const port =  3000
+const port = 5000
 const billsRoutes = require('./routes/routes.bills.js')
 const mainRoutes = require('./routes/routes.summary.js')
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/bill-tracker'
