@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Tracker</title>
+</head>
+<body>
+  <form action="/" method="POST" >
+    <label for="dateDue">DueDate</label>
+    <input type="number" id="dateDue" name="dateDue">
+    <button>Submit</button>
+  </form>
+
+  <div>
+    <p>Bills Due: <span id="billsDue"></span></p>
+  </div>
+</body>
+</html>
+
+<script>
+  const result = document.querySelector('#billsDue')
+  if(<%- payload %>){
+    result.innerText = JSON.stringify(<%- payload %>)
+  }
+  console.log(<%- payload %>)
+</script>
