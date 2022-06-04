@@ -4,25 +4,40 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/styles.css">
   <title>Bill Tracker</title>
 </head>
 <body>
-  <form action="/" method="POST" >
-    <label for="dateDue">DueDate</label>
-    <input type="number" id="dateDue" name="dateDue">
+  <div id="landingNav">
+    <h3>Daily Budget</h3>
+  </div>
+  <form action="/" method="POST" id="userInputForm">
+    <div class="inputFields">
+      <label for="dateDue" class="inputFieldLabel">Payday</label>
+      <input type="number" id="dateDue" name="dateDue" class="inputFieldInput">
+    </div>
+    <div class="inputFields">
+      <label for="netWorth" class="inputFieldLabel">Net Worth</label>
+      <input type="number" id="netWorth" name="netWorth"class="inputFieldInput">
+    </div>
     <button>Submit</button>
   </form>
 
-  <div>
+  <div class="resultDisplay">
     <p>Bills Due: <span id="billsDue"></span></p>
+  </div>
+  <div class="resultDisplay">
+    <p>Net Worth after bills: <span id="afterBillsNW"></span></p>
   </div>
 </body>
 </html>
 
 <script>
-  const result = document.querySelector('#billsDue')
-  if(<%- payload %>){
-    result.innerText = JSON.stringify(<%- payload %>)
-  }
-  console.log(<%- payload %>)
+  const currentNetWorth = <%- postBillsTotal -%>;
+  const totalBills = <%- payload -%>;
+  const billsDue = document.querySelector('#billsDue')
+  billsDue.innerText = '$' + totalBills
+  const postBillsNetWorthDisplay = document.querySelector('#afterBillsNW')
+
+  postBillsNetWorthDisplay.innerText = '$' + currentNetWorth;
 </script>

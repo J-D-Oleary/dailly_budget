@@ -8,7 +8,8 @@ module.exports.renderHome = (req, res, next) => {
 module.exports.renderSummary = async (req, res, next) => {
   const bills = await Bill.find({})
 
-  const { dateDue } = req.body
+  const { dateDue, netWorth } = req.body
+  // const dateDue = 16
  
   let budget = reduceBills(bills)
 
@@ -17,6 +18,7 @@ module.exports.renderSummary = async (req, res, next) => {
   let dueDate = dateDue
 
   let billsDue = 0;
+  let postBillsTotal = 0;
 
   if(today > dueDate){
     for(let i = today; i <= 31; i++){
@@ -36,5 +38,9 @@ module.exports.renderSummary = async (req, res, next) => {
     }
   }
 
-  res.render('index', {payload: billsDue})
+  console.log('BILLS DUE ->', billsDue)
+
+  postBillsTotal = netWorth - billsDue
+
+  res.render('index', {payload: billsDue, postBillsTotal: postBillsTotal})
 }
