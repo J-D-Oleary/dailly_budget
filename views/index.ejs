@@ -36,8 +36,9 @@
   const currentNetWorth = <%- postBillsTotal -%>;
   const totalBills = <%- payload -%>;
   const billsDue = document.querySelector('#billsDue')
-  billsDue.innerText = '$' + totalBills
   const postBillsNetWorthDisplay = document.querySelector('#afterBillsNW')
-
-  postBillsNetWorthDisplay.innerText = '$' + currentNetWorth;
+  if(totalBills && currentNetWorth){
+    billsDue.innerText = '$' + totalBills
+    postBillsNetWorthDisplay.innerText = '$' + currentNetWorth;
+  }
 </script>
